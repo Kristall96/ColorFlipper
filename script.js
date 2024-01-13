@@ -1,28 +1,10 @@
-let mainContent = document.getElementById("section-main");
 let btnDiv = document.getElementById("btnDiv-id");
-let btnTextColor = document.getElementById("text-color");
-let rgbColor = document.getElementById("hex-color");
+let colorHex = document.getElementById("hex-color");
+let rgbColor = document.getElementById("rgb-color");
 let changeColor = document.getElementById("change-color");
 let content = document.getElementById("content");
 let h1 = document.getElementById("heading");
-
-function getBackgroundColor(ContentBackgroundColor) {
-  const contentBackground = window.getComputedStyle(ContentBackgroundColor);
-  return contentBackground.backgroundColor;
-}
-
-btnTextColor.addEventListener("click", function (e) {
-  const bgColor = getBackgroundColor(mainContent);
-  h1.textContent = `Keep Generatting Color: ${bgColor}`;
-  mainContent.style.backgroundColor = randomColor();
-});
-
-rgbColor.addEventListener("click", function (e) {
-  const bgColor = getBackgroundColor(mainContent);
-  h1.textContent = `Background Color: ${bgColor}`;
-
-  console.log(h1.textContent);
-});
+let mainContent = document.getElementById("section-main");
 
 function randomColor() {
   let hex = ["#"];
@@ -43,7 +25,24 @@ function randomColor() {
   return createTheColor;
 }
 
-changeColor.addEventListener("click", function (e) {
+changeColor.addEventListener("click", function () {
   mainContent.style.backgroundColor = randomColor();
   h1.textContent = `Color-Flipper`;
+});
+function getBackgroundColor(contentBackgroundColor) {
+  const contentBackground = window.getComputedStyle(contentBackgroundColor);
+  return contentBackground.backgroundColor;
+}
+rgbColor.addEventListener("click", function () {
+  mainContent.style.backgroundColor = randomColor();
+  const bgColor = getBackgroundColor(mainContent);
+  h1.textContent = `Background Color: ${bgColor}`;
+
+  console.log(h1.textContent);
+});
+
+colorHex.addEventListener("click", function () {
+  const newColor = randomColor();
+  mainContent.style.backgroundColor = newColor;
+  h1.textContent = `Background Color: ${newColor}`;
 });
